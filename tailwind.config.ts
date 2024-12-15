@@ -8,12 +8,13 @@ export default {
     extend: {
       // Sem dáme barvy které chceme použít 
       colors: {
-        'text': '#eae3f2',
-        'background': '#0f0817',
-        'primary': '#b48cde',
-        'secondary': '#521e8a',
-        'accent': '#8f43df',
+        'text': '#140d1c',
+        'background': '#efe8f7',
+        'primary': '#492173',
+        'secondary': '#a975e1',
+        'accent': '#6b20bc',
       },
+
 
     }
   },
