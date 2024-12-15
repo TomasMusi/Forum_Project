@@ -1,13 +1,11 @@
 <script lang="ts">
-    import "../app.css";
-
-    import { API } from '$/lib/api';
-    import type { Snippet } from 'svelte';
-    import type { LayoutData } from './$types';
-
-    let { children, data }: { children: Snippet, data: LayoutData } = $props();
-
-    API.hydrateFromServer(data.api);
+    let { children } = $props();
 </script>
 
-{@render children()}
+<main class="bg-background text-text h-full min-h-screen w-full overflow-x-hidden lg:text-lg">
+    <nav class="bg-secondary flex flex-row gap-4 px-2 md:px-8">
+        <h1 class="text-primary text-2xl lg:text-4xl">Forum</h1>
+    </nav>
+
+    {@render children()}
+</main>
