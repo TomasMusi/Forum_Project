@@ -14,7 +14,10 @@ export default {
         'secondary': '#a975e1',
         'accent': '#6b20bc',
       },
-
+      gridTemplateColumns: {
+        // nastavení vlastního parametru pro grid Template Columns
+        nav: "1fr auto 1fr",
+      }
 
     }
   },
