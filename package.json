@@ -39,9 +39,11 @@
     },
     "dependencies": {
         "@patrick115/sveltekitapi": "^1.2.12",
+        "bootstrap-icons": "^1.11.3",
         "dotenv": "^16.4.5",
         "kysely": "^0.27.4",
         "mysql2": "^3.11.4",
+        "tailwind-merge": "^2.5.5",
         "zod": "^3.23.8"
     }
 }
