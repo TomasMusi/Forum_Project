@@ -7,7 +7,7 @@
     let { children } = $props();
 </script>
 
-<main class="flex h-full min-h-screen w-full flex-col overflow-x-hidden bg-background text-text lg:text-lg">
+<main class="font-roboto flex h-full min-h-screen w-full flex-col overflow-x-hidden bg-background text-text lg:text-lg">
     <!-- Components / Navigation -->
     <Navigation />
     <section class="flex h-full flex-1 flex-col items-center justify-center">

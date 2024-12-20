@@ -7,17 +7,17 @@
 
 <Card class="m-auto grid min-w-[50%] grid-cols-2 gap-8">
     <h1 class="font-poppins col-span-2 mx-auto mb-4 w-max border-b-2 border-b-black text-2xl font-bold lg:text-4xl">Register</h1>
-    <Entry id="username" label="username" error="IDK">
-        <Input id="username" placeholder="Jmeno" />
+    <Entry id="username" label="Username">
+        <Input id="username" placeholder="Username" />
     </Entry>
-    <Entry id="email" label="email" error="IDK">
+    <Entry id="email" label="Email">
         <Input id="email" placeholder="email" type="email" />
     </Entry>
-    <Entry id="password" label="password" error="IDK">
+    <Entry id="password" label="Password">
         <Input id="password" placeholder="password" type="password" />
     </Entry>
-    <Entry id="password2" label="password" error="IDK">
+    <Entry id="password2" label="Password (Again)">
         <Input id="password2" placeholder="password" type="password" />
     </Entry>
-    <Button class="col-span-2 mx-auto">aa</Button>
+    <Button class="col-span-2 mx-auto">Register</Button>
 </Card>
