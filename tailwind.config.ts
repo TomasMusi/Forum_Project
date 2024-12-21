@@ -17,6 +17,10 @@ export default {
       gridTemplateColumns: {
         // nastavení vlastního parametru pro grid Template Columns
         nav: "1fr auto 1fr",
+      },
+      // sice to tady nepoužíváme, ale chtěl jsem jen ukázat, že si můžeme i nastavit reponsivitu na přesné parametry v configu.
+      screens: {
+        'mobile': '470'
       }
 
     }
