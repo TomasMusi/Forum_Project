@@ -25,7 +25,7 @@ export const POST = async function ({ request }) {
 
 
 // kdybychom se koukli do network tabu, tak vidíme, že nám to vrátilo "Ahoj"
-// a jen a pouze na serverové stráně vídíme to dělo jenž se poslalo.
+// a jen a pouze na serverové stráně vídíme to tělo jenž se poslalo.
 
 
 
