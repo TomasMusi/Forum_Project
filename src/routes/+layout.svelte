@@ -2,9 +2,15 @@
     // zde musí být import na ../app.css aby tailwind fungoval.
     import Icon from '$/components/Icon.svelte';
     import Navigation from '$/components/navigator/Navigation.svelte';
+    import type { Snippet } from 'svelte';
     import '../app.css';
     import 'bootstrap-icons/font/bootstrap-icons.min.css';
-    let { children } = $props();
+
+    import type { LayoutData } from './$types';
+    import { API } from '$/lib/api';
+    let { children, data }: { children: Snippet; data: LayoutData } = $props();
+
+    API.hydrateFromServer(data.api); //
 </script>
 
 <main class="font-roboto flex h-full min-h-screen w-full flex-col overflow-x-hidden bg-background text-text lg:text-lg">

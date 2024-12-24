@@ -11,4 +11,5 @@ export const r = router({
     // nyní když otevřeme /api/example tak nám to napíše "Hello from the API!"
 })
 
+// zde jsme si vytvořili typ ,,AppRouter", který je typu R
 export type AppRouter = typeof r

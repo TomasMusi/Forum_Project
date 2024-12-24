@@ -8,3 +8,12 @@ import type { AppRouter } from "./server/routes";
 // ale skvělé je,že předtímto nás Sveltekit dokáže varovat!
 
 export const API = createAPIClient<AppRouter>('/api')
+
+
+// nyní díky tomu, že jsme si zde dali tyo ,,AppRouter" tak nám typescript zabízí vše co se nachází v router
+
+// API.example
+
+
+// avšak nastává tu problém, kdybychom to nyní dali na clienta console.log(API.example), tak nám to dá undefined, protože klasický javascript si neví rady s typama. Proto na clientovi použijeme HydrateFromServer. API.HydrateFromServer
+// Co to dělá HydrateFromServer. ,,Zalije" správnými informacemi, aby při použítí API.Example věděl co má dělat.
