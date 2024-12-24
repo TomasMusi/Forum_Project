@@ -8,9 +8,12 @@
 
     import type { LayoutData } from './$types';
     import { API } from '$/lib/api';
+    //                                           data jsou ty data ze serveru.
     let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
-    API.hydrateFromServer(data.api); //
+    // tohle api, se bere ze souboru +layout.server.ts
+    // HydrateFromServer, dělá komunikaci se serverem na klienta!
+    API.hydrateFromServer(data.api);
 </script>
 
 <main class="font-roboto flex h-full min-h-screen w-full flex-col overflow-x-hidden bg-background text-text lg:text-lg">
