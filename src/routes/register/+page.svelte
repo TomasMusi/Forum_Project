@@ -4,14 +4,18 @@
     import Entry from '$/components/Form/Entry.svelte';
     import Input from '$/components/Form/Input.svelte';
     import { API } from '$/lib/api';
+    import Swal from 'sweetalert2'; // zde si to můžeme pojmenovat jak chceme, protože je to default (Zde jsme si to pojmenovali Swal)
     import { GroupByItemNode } from 'kysely';
+    import { SwalAlert } from '$/lib/Alerts';
 
     // avšak my chceme říct, že ten error může být i string, akorát je tam undefined? Dáme to přes typy :D
     // existuje typ Record, typicky když chceš mít nějaký object, který bude mít v levo string a potom nějakou value tak se to jmenuje Record.
     // A my mu řekneme, klíče v tomto případě (username, email, password, password2), budou typu string, a druhá hodnota je to co je ve vnitř jich takže v tomto případě (value, error)
+    type Inputs = 'username' | 'email' | 'password' | 'password2';
+
     let data = $state<
         Record<
-            'username' | 'email' | 'password' | 'password2',
+            Inputs,
             {
                 value: string;
                 error: string | undefined;
@@ -85,10 +89,22 @@
         // .map() udělá to, že nám to vyfiltruje a napíše nám to vedle našeho klíče (username, email, password,password2) vypíše tu value.
 
         // Object.fromEntries nám z toho netries udělá object znovu.
-        const body = Object.fromEntries(Object.entries(data).map(([key, value]) => [key, value.value]));
+
+        const getValues = () => {
+            // as Record<> V levo bude password1,2 atd, v pravo string.
+            return Object.fromEntries(Object.entries(data).map(([key, value]) => [key, value.value])) as Record<Inputs, string>;
+        };
 
         // akorát nyní je tu problém, ono to nerozeznává náš, email, password, proto nahoře musíme přesně říct, že to bude username string,email,string,password string,password2 string
-        const response = await API.auth.register(body);
+        // dalším problém je ten, že typescript při .FromEntries() nerozeznává typy, tudíž si musíme poradit nějak.
+        const response = await API.auth.register(getValues());
+
+        console.log(response);
+
+        SwalAlert({
+            icon: 'success',
+            text: 'Sucessfuly registered'
+        });
     };
 </script>
 
