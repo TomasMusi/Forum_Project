@@ -23,7 +23,7 @@
 </script>
 
 <nav class=" grid grid-cols-nav gap-4 bg-secondary px-2 py-4 md:px-8">
-    <h1 class="my-auto flex text-3xl font-bold text-primary lg:text-5xl">Forum</h1>
+    <h1 class="my-auto flex text-3xl font-bold text-primary lg:text-5xl"><a href="/">Forum</a></h1>
     <div class="flex gap-2 text-center">
         {#each dropdowns as item}
             <!-- Vše co je v dropdownu se bude řídit podle pravidel Dropdown.svelte a také Navigation.svelte-->

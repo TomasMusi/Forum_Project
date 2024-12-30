@@ -7,6 +7,7 @@
     import Swal from 'sweetalert2'; // zde si to můžeme pojmenovat jak chceme, protože je to default (Zde jsme si to pojmenovali Swal)
     import { GroupByItemNode } from 'kysely';
     import { SwalAlert } from '$/lib/Alerts';
+    import { goto } from '$app/navigation';
 
     // avšak my chceme říct, že ten error může být i string, akorát je tam undefined? Dáme to přes typy :D
     // existuje typ Record, typicky když chceš mít nějaký object, který bude mít v levo string a potom nějakou value tak se to jmenuje Record.
@@ -101,10 +102,20 @@
 
         console.log(response);
 
+        if (!response.status) {
+            SwalAlert({
+                icon: 'error',
+                text: response.message
+            });
+            return;
+        }
+
         SwalAlert({
             icon: 'success',
             text: 'Sucessfuly registered'
         });
+        // přesměrujeme uživatele na login stránce.
+        goto('/login');
     };
 </script>
 
