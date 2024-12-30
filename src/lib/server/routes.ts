@@ -41,7 +41,7 @@ export const r = router({
             const hashed = bcrypt.hashSync(input.password, 10);
 
             // tímto jednoduchým příkazem uložím do users tyto hodnoty:
-            conn.insertInto("Users").values({
+            await conn.insertInto("Users").values({
                 Username: input.username,
                 Email: input.email,
                 Passsword: hashed

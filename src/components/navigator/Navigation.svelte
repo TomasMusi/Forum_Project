@@ -20,6 +20,8 @@
             icon: 'bi-person-fill'
         }
     ];
+
+    let logged = true;
 </script>
 
 <nav class=" grid grid-cols-nav gap-4 bg-secondary px-2 py-4 md:px-8">
@@ -27,20 +29,21 @@
     <div class="flex gap-2 text-center">
         {#each dropdowns as item}
             <!-- Vše co je v dropdownu se bude řídit podle pravidel Dropdown.svelte a také Navigation.svelte-->
-            <Dropdown>
-                <Icon class="cursor-pointer" name={item.icon} />
-                {item.name}
-            </Dropdown>
+            <Dropdown name={item.name} icon={item.icon}>DROP CONTENT</Dropdown>
         {/each}
     </div>
     <div class="flex items-center justify-end gap-2">
-        <a href="/login" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
-            <Icon name="bi-person-add" />
-            Login
-        </a>
-        <a href="/register" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
-            <Icon name="bi-person-add" />
-            Register
-        </a>
+        {#if !logged}
+            <a href="/login" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
+                <Icon name="bi-person-add" />
+                Login
+            </a>
+            <a href="/register" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
+                <Icon name="bi-person-add" />
+                Register
+            </a>
+        {:else}
+            aa
+        {/if}
     </div>
 </nav>
