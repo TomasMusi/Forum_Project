@@ -9,6 +9,7 @@ import type { ErrorApiResponse } from '@patrick115/sveltekitapi';
 // pnpm i -D /@types/bcrypt 
 import bcrypt from 'bcrypt';
 import type { Response } from '$/types/responses';
+import type { ErrorList } from "../errors"
 
 // router a procedure jsou importy z ./api.ts
 
@@ -33,9 +34,9 @@ export const r = router({
             // když zadáme jméno v databázi, tak nám to vráti array, buď jestli máme uživatele v databázi tak nám to vrátí array s ID a jestli tam není jméno ani email, tak nám to vrátí prázdný array.
             if (data.length > 0) {
                 return {
-                    code: 404,
+                    code: 400,
                     status: false,
-                    message: "Username or Email Already Used"
+                    message: "auth.register.invalid" satisfies ErrorList
                 } satisfies ErrorApiResponse;
             }   // parseInt(Salt_Password)
             const hashed = bcrypt.hashSync(input.password, 10);

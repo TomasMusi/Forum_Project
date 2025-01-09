@@ -43,7 +43,10 @@
                 Register
             </a>
         {:else}
-            aa
+            <Dropdown name="Thomas" icon="bi-person-fill" class="left-1/2 flex min-w-56 -translate-x-1/2 flex-col">
+                Stats
+                <button>Logout</button>
+            </Dropdown>
         {/if}
     </div>
 </nav>

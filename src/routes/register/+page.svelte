@@ -8,6 +8,7 @@
     import { GroupByItemNode } from 'kysely';
     import { SwalAlert } from '$/lib/Alerts';
     import { goto } from '$app/navigation';
+    import { extractError, matchError } from '$/lib/errors';
 
     // avšak my chceme říct, že ten error může být i string, akorát je tam undefined? Dáme to přes typy :D
     // existuje typ Record, typicky když chceš mít nějaký object, který bude mít v levo string a potom nějakou value tak se to jmenuje Record.
@@ -105,8 +106,13 @@
         if (!response.status) {
             SwalAlert({
                 icon: 'error',
-                text: response.message
+                text: extractError(response.message)
             });
+
+            if (matchError(response.message, 'auth.register.invalid')) {
+                data.username.error = extractError(response.message);
+                data.email.error = extractError(response.message);
+            }
             return;
         }
 
@@ -123,16 +129,16 @@
     <h1 class="font-poppins col-span-2 mx-auto mb-4 w-max border-b-2 border-b-black text-2xl font-bold lg:text-4xl">Register</h1>
     <Entry id="username" label="Username" error={data.username.error}>
         <!-- důvod proč nepoužijeme u toho error, bind, je ten že bind používáme tehdy, když chceme posílat a získavat data zpátky, což zde nechceme. -->
-        <Input id="username" placeholder="Username" bind:value={data.username.value} />
+        <Input id="username" placeholder="Username" bind:value={data.username.value} invalid={data.username.error} />
     </Entry>
     <Entry id="email" label="Email" error={data.email.error}>
-        <Input id="email" placeholder="email" type="email" bind:value={data.email.value} />
+        <Input id="email" placeholder="email" type="email" bind:value={data.email.value} invalid={data.email.error} />
     </Entry>
     <Entry id="password" label="Password" error={data.password.error}>
-        <Input id="password" placeholder="password" type="password" bind:value={data.password.value} />
+        <Input id="password" placeholder="password" type="password" bind:value={data.password.value} invalid={data.password.error} />
     </Entry>
     <Entry id="password2" label="Password (Again)" error={data.password2.error}>
-        <Input id="password2" placeholder="password" type="password" bind:value={data.password2.value} />
+        <Input id="password2" placeholder="password" type="password" bind:value={data.password2.value} invalid={data.password.error} />
     </Entry>
     <Button class="col-span-2 mx-auto" onclick={register}>Register</Button>
 </Card>
