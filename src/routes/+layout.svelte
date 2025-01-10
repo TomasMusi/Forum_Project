@@ -2,7 +2,7 @@
     // zde musí být import na ../app.css aby tailwind fungoval.
     import Icon from '$/components/Icon.svelte';
     import Navigation from '$/components/navigator/Navigation.svelte';
-    import type { Snippet } from 'svelte';
+    import { setContext, type Snippet } from 'svelte';
     import '../app.css';
     import 'bootstrap-icons/font/bootstrap-icons.min.css';
 
@@ -15,6 +15,7 @@
     // tohle api, se bere ze souboru +layout.server.ts
     // HydrateFromServer, dělá komunikaci se serverem na klienta!
     API.hydrateFromServer(data.api);
+    setContext('userState', data.userState);
     //                      z toho data.api jsem získal data ze serveru
     // A API.hydrateFromServer, si natáhá ti data k sobě na klienta
 

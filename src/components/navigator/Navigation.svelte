@@ -2,6 +2,8 @@
     import Icon from '../Icon.svelte';
     import Dropdown from './Dropdown.svelte';
     import type { BootstrapIcon } from '$/types/bootstrap_icons';
+    import { getContext } from 'svelte';
+    import type { UserState } from '$/types/types';
 
     const dropdowns: {
         name: string;
@@ -21,6 +23,8 @@
         }
     ];
 
+    const userState = getContext<UserState>('userState');
+
     let logged = true;
 </script>
 
@@ -33,7 +37,7 @@
         {/each}
     </div>
     <div class="flex items-center justify-end gap-2">
-        {#if !logged}
+        {#if !userState.logged}
             <a href="/login" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
                 <Icon name="bi-person-add" />
                 Login
@@ -43,7 +47,7 @@
                 Register
             </a>
         {:else}
-            <Dropdown name="Thomas" icon="bi-person-fill" class="left-1/2 flex min-w-56 -translate-x-1/2 flex-col">
+            <Dropdown name={userState.data.Username} icon="bi-person-fill" class="left-1/2 flex min-w-56 -translate-x-1/2 flex-col">
                 Stats
                 <button>Logout</button>
             </Dropdown>

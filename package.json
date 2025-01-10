@@ -46,11 +46,15 @@
     },
     "dependencies": {
         "@patrick115/sveltekitapi": "^1.2.12",
+        "@types/jsonwebtoken": "^9.0.7",
         "bootstrap-icons": "^1.11.3",
         "dotenv": "^16.4.7",
+        "jsonwebtoken": "^9.0.2",
         "kysely": "^0.27.5",
         "mysql2": "^3.12.0",
+        "simple-json-db": "^2.0.0",
         "tailwind-merge": "^2.6.0",
+        "uuid": "^11.0.4",
         "zod": "^3.24.1"
     }
 }

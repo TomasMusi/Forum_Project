@@ -2,10 +2,11 @@
 // například conn pro připojení k databázi, nebo proměnnou pro práci třeba s cookies
 
 import type { DB } from "$/types/database";
-import { DATABASE_IP, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USER } from "$env/static/private";
+import { DATABASE_IP, DATABASE_NAME, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_USER, WEBTOKEN } from "$env/static/private";
 import { Kysely } from "kysely";
 import { MysqlDialect } from "kysely";
 import { createPool } from 'mysql2';
+import { JWTCookies } from "./cookies/main";
 
 // dialect, takto nazývá kysely a je to prostředí které nás připojí k databázi.
 // dialect dělá most mezi mysql2 a mezi kysely.
@@ -40,3 +41,10 @@ const dialect = new MysqlDialect({
 export const conn = new Kysely<DB>({
     dialect // zde dáme proměnnou z vrchu ve které jsme nastavovali, připojení na databázi.
 })
+
+
+
+export const jwt = new JWTCookies(WEBTOKEN);
+
+
+// nyní když napíšeme jwt. tak nám vyskočí setCookie, getCookie
