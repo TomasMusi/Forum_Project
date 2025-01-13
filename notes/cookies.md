@@ -61,4 +61,5 @@ Typicky se přihlášení děla věma způsoby
 
 
 Fun fact: PHP využívat první možnost a session tokeny uchovává do souboru:
-![STORAGE INFO](https://upload.patrick115.eu/screenshot/dfe08d7689.png)
+![STORAGE INFO](![image](https://github.com/user-attachments/assets/c44ce36d-3c5c-4db7-a702-0b517271023b)
+)
