@@ -10,6 +10,10 @@
     import { SwalAlert } from '$/lib/Alerts';
     import { goto } from '$app/navigation';
     import { extractError, matchError } from '$/lib/errors';
+    import { getContext, setContext } from 'svelte';
+    import type { UserData, UserState } from '$/types/types';
+    import { getUserState } from '$/lib/server/function';
+    import type { Writable } from 'svelte/store';
 
     type Inputs = 'username' | 'password';
 
@@ -31,6 +35,8 @@
             error: undefined
         }
     });
+
+    const userState = getContext<Writable<UserState>>('userState');
 
     const login = async () => {
         Object.values(data).forEach((item) => (item.error = undefined));
@@ -72,6 +78,18 @@
             icon: 'success',
             text: 'Login was sucessfull'
         });
+
+        // Nemůžeme to použít ve funkci ale ve hlavním kodu
+        //        setContext('userState', {
+        //           logged: true,
+        //         data: response.data
+        //   });
+
+        userState.set({
+            logged: true,
+            data: response.data
+        });
+
         goto('/');
     };
 </script>

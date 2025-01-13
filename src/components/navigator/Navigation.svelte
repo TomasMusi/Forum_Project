@@ -4,6 +4,11 @@
     import type { BootstrapIcon } from '$/types/bootstrap_icons';
     import { getContext } from 'svelte';
     import type { UserState } from '$/types/types';
+    import type { Writable } from 'svelte/store';
+    import { api } from '$/lib/server/api';
+    import { API } from '$/lib/api';
+    import { SwalAlert } from '$/lib/Alerts';
+    import { error } from '@sveltejs/kit';
 
     const dropdowns: {
         name: string;
@@ -23,7 +28,27 @@
         }
     ];
 
-    const userState = getContext<UserState>('userState');
+    const userState = getContext<Writable<UserState>>('userState');
+
+    const logout = async () => {
+        const response = await API.auth.logout();
+        if (!response.status) {
+            SwalAlert({
+                icon: 'error',
+                title: 'Error'
+            });
+            return;
+        }
+
+        SwalAlert({
+            icon: 'success',
+            title: 'Succesfully logout!'
+        });
+
+        userState.set({
+            logged: false
+        });
+    };
 
     let logged = true;
 </script>
@@ -37,7 +62,7 @@
         {/each}
     </div>
     <div class="flex items-center justify-end gap-2">
-        {#if !userState.logged}
+        {#if !$userState.logged}
             <a href="/login" class="flex gap-1 rounded-md px-2 py-1 text-xl font-bold transition-colors duration-200 hover:bg-primary">
                 <Icon name="bi-person-add" />
                 Login
@@ -47,7 +72,7 @@
                 Register
             </a>
         {:else}
-            <Dropdown name={userState.data.Username} icon="bi-person-fill" class="left-1/2 flex min-w-56 -translate-x-1/2 flex-col">
+            <Dropdown name={$userState.data.Username} icon="bi-person-fill" class="left-1/2 flex min-w-56 -translate-x-1/2 flex-col">
                 Stats
                 <button>Logout</button>
             </Dropdown>

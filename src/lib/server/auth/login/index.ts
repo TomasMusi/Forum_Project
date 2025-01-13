@@ -6,6 +6,7 @@ import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import { COOKIE_EXPIRE } from '$env/static/private'
 import type { Response } from '$/types/responses';
+import type { UserData } from '$/types/types';
 
 export default procedure.POST.input(z.object({
     username: z.string(),
@@ -38,7 +39,8 @@ export default procedure.POST.input(z.object({
     });
 
     return {
-        status: true
-    } satisfies Response;
+        status: true,
+        data: UserData
+    } satisfies ResponseWithData<UserData>;
 
 })
