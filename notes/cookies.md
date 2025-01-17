@@ -10,7 +10,7 @@ Typicky se přihlášení děla věma způsoby
     {
         "ead19ebf488bf650125e57f72f2e1024ed6ed294": {
             "id": 20,
-            "username": "patrick115",
+            "username": "pepik",
             "permissions": ["forum.thread.create", "forum.user.ban"],
             "dalsi": "data",
             "toto_jsou_dalsi": "data ktere muse mit uzivatel ulozen atd.."
